@@ -1,3 +1,4 @@
+# DAY 4
 require 'csv'
 
 class Person
@@ -74,25 +75,21 @@ class Database
   end
 
   def search_person
-    found = false
     print "Please input the name of the person you want to search: "
     search_person = gets.chomp
 
-    @person_array.each do |person|
-      if person.name == search_person
-        found = true
-        puts "This is #{person.name}'s information.
-        \nName: #{person.name}
-        \nPhone: #{person.phone_number}
-        \nAddress: #{person.address}
-        \nPosition: #{person.position}
-        \nSalary: #{person.salary}
-        \nSlack Account: #{person.slack_acct}
-        \nGitHub Account: #{person.github_acct}"
-      end
-    end
+    found_person = @person_array.find { |person| person.name == search_person}
 
-    if found == false
+    if found_person
+      puts "\nThis is #{found_person.name}'s information.
+      \nName: #{found_person.name}
+      \nPhone: #{found_person.phone_number}
+      \nAddress: #{found_person.address}
+      \nPosition: #{found_person.position}
+      \nSalary: #{found_person.salary}
+      \nSlack Account: #{found_person.slack_acct}
+      \nGitHub Account: #{found_person.github_acct}"
+    else
       puts "\n#{search_person} is not in our system.\n"
     end
   end
