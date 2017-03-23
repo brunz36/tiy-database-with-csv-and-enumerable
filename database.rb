@@ -37,16 +37,19 @@ class Database
   end
 
   def add_person
-    found = true
-    while found == true
-      print "Please input a name, when finished leave blank: "
-      name = gets.chomp.capitalize
+    # found = true
+    # while found == true
+    #
+    # if name.empty?
+    #   found = false
+    #   next
+    # end
+    print "Please input a name, when finished leave blank: "
+    name = gets.chomp
 
-      if name.empty?
-        found = false
-        next
-      end
-
+    if @person_array.find { |person| person.name == name }
+      puts "\n#{name} is alredy in our system."
+    else
       print "Input a phone number with area code, eg. 7278475464: "
       phone_number = gets.chomp.to_i
 
@@ -106,8 +109,7 @@ class Database
     end
   end
 
-  def quit_program
-    puts "Thank you for your input."
+  def write_file
 
     CSV.open("employees.csv", "w") do |row|
       row << ["Name", "Phone Number", "Address", "Position", "Salary", "Slack Account", "GitHub Account"]
@@ -143,8 +145,9 @@ class Menu
       elsif selected == "d"
         @database.delete_person
       elsif selected == "q"
-        @database.quit_program
+        @database.write_file
         @menu = false
+        puts "Thank you for your input. We've saved all your work for you."
       else
         puts "Please only select: A | S | D | Q"
       end
