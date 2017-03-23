@@ -19,7 +19,7 @@ class Database
 
   def initialize
     @person_array = []
-    CSV.foreach("tiy_people.csv", headers: true) do |row|
+    CSV.foreach("employees.csv", headers: true) do |row|
       name = row["Name"]
       phone_number = row["Phone Number"]
       address = row["Address"]
@@ -118,7 +118,7 @@ class Database
   def quit_program
     puts "Thank you for your input."
 
-    CSV.open("tiy_people.csv", "w") do |row|
+    CSV.open("employees.csv", "w") do |row|
       row << ["Name", "Phone Number", "Address", "Position", "Salary", "Slack Account", "GitHub Account"]
       @person_array.each do |person|
         row << [person.name, person.phone_number, person.address, person.position, person.salary, person.slack_acct, person.github_acct]
