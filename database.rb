@@ -95,21 +95,15 @@ class Database
   end
 
   def delete_person
-    found = false
     print "Please input the name of the person you want to delete: "
     delete_person = gets.chomp
 
-    @person_array.each do |person|
-      if person.name == delete_person
-        found = true
-        @person_array.delete(person)
-      end
+    if @person_array.any? { |person| person.name == delete_person}
+      @person_array.delete_if { |person| person.name == delete_person}
+      print "Deleted person: #{delete_person}"
+    else
+      print "#{delete_person} is not in our system."
     end
-
-    if found == false
-      puts "\n#{delete_person} is not in our system.\n"
-    end
-
   end
 
   def quit_program
