@@ -1,21 +1,22 @@
 Name,Phone Number,Address,Position,Salary,Slack Account,GitHub Account
-Joe Smith,7278248292,"123 Main St., Tampa FL 34343",Instructor,70000,joes43,joes43
+Joe Smith,7278248292,"123 Main St., Tampa FL 34343",Instructor,1,joes43,joes43
 Bob Clark,7279292044,"6563 1st Ave S, St. Petersburg FL 45345",Student,25000,bobclark,bobclark
-Dan Langz,8243423452,"453 Carrige Dr., Palm Harbor FL 45222",Campus Director,90000,danlangity,danlangity
+Dan Langz,8243423452,"453 Carrige Dr., Palm Harbor FL 45222",Campus Director,10,danlangity,danlangity
 Bruno Ribeiro,3439479327,"1108 Thornwood Dr, Oldsmar FL 24532",Student,35000,brunz36,brunz36
-Gabe wolf,4523853947,"4355 Iron St., Largo FL 25423",Instructor,55000,gabewolf,gabew234
-Joe Smith,3348278990,"124 Main St., Tampa FL 34343",Instructor,49000,joes43,joes43
+Gabe wolf,4523853947,"4355 Iron St., Largo FL 25423",TA,55000,gabewolf,gabew234
+Joe Smith,3348278990,"124 Main St., Tampa FL 34343",Instructor,2,joes43,joes43
 Bob Clark,2413418850,"6564 1st Ave S, St. Petersburg FL 45345",Student,47000,bobclark,bobclark
-Dan Lang,1478558709,"454 Carrige Dr., Palm Harbor FL 45222",Campus Director,45000,danlangity,danlangity
+Dan Lang,1478558709,"454 Carrige Dr., Palm Harbor FL 45222",Campus Director,10,danlangity,danlangity
 Bruno Ribeiro,543698568.2,"1109 Thornwood Dr, Oldsmar FL 24532",Student,43000,brunz36zzz,brunz36
-Gabe wolf,-391161572.5,"4356 Iron St., Largo FL 25423",Instructor,41000,gabewolf,gabew235
-Joe Smith,-1326021713,"125 Main St., Tampa FL 34343",Instructor,39000,joes43,joes43
-Bob Clark,-2260881854,"6565 1st Ave S, St. Petersburg FL 45345",Student,37000,bobclark,bobclark
-Dan Lang,-3195741995,"455 Carrige Dr., Palm Harbor FL 45222",Campus Director,35000,danlangity,danlangity
-Bruno Ribeiro,-4130602135,"1110 Thornwood Dr, Oldsmar FL 24532",Student,33000,brunz36,brunz36
-Gabe wolf,-5065462276,"4357 Iron St., Largo FL 25423",Instructor,31000,gabewolf,gabew236zzz
-Joe Smith,-6000322417,"126 Main St., Tampa FL 34343",Instructor,29000,joes43,joes43
-Bob Clark,-6935182557,"6566 1st Ave S, St. Petersburg FL 45345",Student,27000,bobclark,bobclark
-Dan Lang,-7870042698,"456 Carrige Dr., Palm Harbor FL 45222",Campus Director,25000,danlangity,danlangity
-Bruno Ribeiro,-8804902839,"1111 Thornwood Dr, Oldsmar FL 24532",Student,23000,brunz36,brunz36
-Gabe wolf,-9739762980,"4358 Iron St., Largo FL 25423",Instructor,21000,gabewolfzzz,gabew237
+Gabe wolf,66969645,"4356 Iron St., Largo FL 25423",TA,41000,gabewolf,gabew235
+Joe Smith,43654745,"125 Main St., Tampa FL 34343",Instructor,3,joes43,joes43
+Bob Clark,64564564,"6565 1st Ave S, St. Petersburg FL 45345",Student,211,bobclark,bobclark
+Dan Lang,8787867,"455 Carrige Dr., Palm Harbor FL 45222",Campus Director,10,danlangity,danlangity
+Bruno Ribeiro,786345334,"1110 Thornwood Dr, Oldsmar FL 24532",Student,33000,brunz36,brunz36
+Gabe wolf,366564376,"4357 Iron St., Largo FL 25423",Instructor,4,gabewolf,gabew236zzz
+Joe Smith,756767644,"126 Main St., Tampa FL 34343",TA,29000,joes43,joes43
+Bob Clark,67454344,"6566 1st Ave S, St. Petersburg FL 45345",Student,27000,bobclark,bobclark
+Dan Lang,4564363,"456 Carrige Dr., Palm Harbor FL 45222",Campus Director,10,danlangity,danlangity
+Bruno Ribeiro,6547474,"1111 Thornwood Dr, Oldsmar FL 24532",Student,23000,brunz36,brunz36
+Gabe wolf,465645,"4358 Iron St., Largo FL 25423",Instructor,5,gabewolfzzz,gabew237
+Gavin Stark,64564654,34543 gffdgdfg 3453f,Instructor,6,sdg,sg

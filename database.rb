@@ -9,7 +9,7 @@ class Person
     @phone_number = phone_number
     @address = address
     @position = position
-    @salary = salary
+    @salary = salary.to_i
     @slack_acct = slack_acct
     @github_acct = github_acct
   end
@@ -101,6 +101,31 @@ class Database
     end
   end
 
+  def report
+    puts "\nHere is a list of the individuals associated with The Iron Yard."
+    @person_array.each do |person|
+      puts "\nName: #{person.name}"
+      puts "Phone Number: #{person.phone_number}"
+      puts "Adress: #{person.address}"
+      puts "Position: #{person.position}"
+      puts "Salary: $#{person.salary}"
+      puts "Slack Account: #{person.slack_acct}"
+      puts "GitHub Account: #{person.github_acct}"
+    end
+
+    instructor = @person_array.select { |person|  person.position == "Instructor"  }
+    instructor_salary = instructor.map { |wages| wages.salary }
+    instructor_salary_all = instructor_salary.sum
+
+    director = @person_array.select { |person| person.position == "Campus Director"}
+    director_salary = director.map { |wages| wages.salary }
+    director_salary_all = director_salary.sum
+
+    puts "\nThe total sum of the Instructors salary at The Iron Yard is: $#{instructor_salary_all}."
+    puts "\nThe total sum of the Campus Directors salary at The Iron Yard is: $#{director_salary_all}."
+
+  end
+
   def write_file
     CSV.open("employees.csv", "w") do |row|
       row << ["Name", "Phone Number", "Address", "Position", "Salary", "Slack Account", "GitHub Account"]
@@ -124,6 +149,7 @@ class Menu
       puts "\n\tA: Add a person"
       puts "\tS: Search for a person"
       puts "\tD: Delete a person"
+      puts "\tR: Report"
       puts "\tQ: Quit"
 
       print "\n>> "
@@ -137,6 +163,8 @@ class Menu
       elsif selected == "d"
         @database.delete_person
         @database.write_file
+      elsif selected == "r"
+        @database.report
       elsif selected == "q"
         @menu = false
         puts "Thank you for your input."
