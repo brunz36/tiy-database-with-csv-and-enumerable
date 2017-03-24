@@ -37,13 +37,6 @@ class Database
   end
 
   def add_person
-    # found = true
-    # while found == true
-    #
-    # if name.empty?
-    #   found = false
-    #   next
-    # end
     print "Please input a name, when finished leave blank: "
     name = gets.chomp
 
@@ -110,7 +103,6 @@ class Database
   end
 
   def write_file
-
     CSV.open("employees.csv", "w") do |row|
       row << ["Name", "Phone Number", "Address", "Position", "Salary", "Slack Account", "GitHub Account"]
       @person_array.each do |person|
