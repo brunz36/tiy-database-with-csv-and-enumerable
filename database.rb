@@ -121,8 +121,14 @@ class Database
     director_salary = director.map { |wages| wages.salary }
     director_salary_all = director_salary.sum
 
+    student = @person_array.select { |person| person.position == "Student"}
+
     puts "\nThe total sum of the Instructors salary at The Iron Yard is: $#{instructor_salary_all}."
-    puts "\nThe total sum of the Campus Directors salary at The Iron Yard is: $#{director_salary_all}."
+    puts "The total sum of the Campus Directors salary at The Iron Yard is: $#{director_salary_all}."
+
+    puts "\nThere are a total of #{instructor.length} Instructors at The Iron Yard."
+    puts "\nThere are a total of #{director.length} Campus Directors at The Iron Yard."
+    puts "\nThere are a total of #{student.length} students at The Iron Yard."
 
   end
 
