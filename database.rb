@@ -95,7 +95,7 @@ class Database
 
     if @person_array.any? { |person| person.name == delete_person}
       @person_array.delete_if { |person| person.name == delete_person}
-      print "Deleted person: #{delete_person}"
+      print "Deleted person: #{delete_person}\n"
     else
       print "\n#{delete_person} is not in our system.\n"
     end
@@ -136,10 +136,10 @@ class Menu
         @database.search_person
       elsif selected == "d"
         @database.delete_person
-      elsif selected == "q"
         @database.write_file
+      elsif selected == "q"
         @menu = false
-        puts "Thank you for your input. We've saved all your work for you."
+        puts "Thank you for your input."
       else
         puts "Please only select: A | S | D | Q"
       end
