@@ -1,6 +1,6 @@
-names = ["bruno", "joe", "nancy", "dan", "bob", "thais", "jane"]
+names = [["bruno", "joe"],["nancy", "dan"], ["bob", "thais", "jane"]]
 
-found = names.select {|x| x.include? "a"}
-fond = names.select { |x| x.grep(/^a/)}
+y = "joe"
+found = names.find_all {|x| x == y}
+
 p found
-p fond

@@ -71,23 +71,27 @@ class Database
   end
 
   def search_person
-    print "Please input the name of the person you want to search: "
+    print "Please input the username of their Slack, GitHub account or the name of the person you want to search: "
     search_person = gets.chomp
 
+    multiple_persons = @person_array.select {|x| (x.name.include?(search_person))}
     found_person = @person_array.find { |person| person.name == search_person}
 
-    if found_person
-      puts "\nThis is #{found_person.name}'s information.
-      \nName: #{found_person.name}
-      \nPhone: #{found_person.phone_number}
-      \nAddress: #{found_person.address}
-      \nPosition: #{found_person.position}
-      \nSalary: #{found_person.salary}
-      \nSlack Account: #{found_person.slack_acct}
-      \nGitHub Account: #{found_person.github_acct}"
-    else
-      puts "\n#{search_person} is not in our system.\n"
-    end
+    puts multiple_persons.length
+    p multiple_persons
+
+    # if found_person
+    #   puts "\nThis is #{found_person.name}'s information.
+    #   \nName: #{found_person.name}
+    #   \nPhone: #{found_person.phone_number}
+    #   \nAddress: #{found_person.address}
+    #   \nPosition: #{found_person.position}
+    #   \nSalary: #{found_person.salary}
+    #   \nSlack Account: #{found_person.slack_acct}
+    #   \nGitHub Account: #{found_person.github_acct}"
+    # else
+    #   puts "\n#{search_person} is not in our system.\n"
+    # end
   end
 
   def delete_person
