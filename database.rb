@@ -16,7 +16,7 @@ class Person
 end
 
 class Database
-  attr_reader "search_name", "found"
+  attr_reader "search_name"
 
   def initialize
     @person_array = []
@@ -33,11 +33,10 @@ class Database
 
       @person_array << person
     end
-    @found = found
   end
 
   def add_person
-    print "Please input a name, when finished leave blank: "
+    print "Please input a name: "
     name = gets.chomp
 
     if @person_array.find { |person| person.name == name }
@@ -61,8 +60,6 @@ class Database
       print "Input the GitHub account: "
       github_acct = gets.chomp
 
-      puts ""
-
       person = Person.new(name, phone_number, address, position, salary, slack_acct, github_acct)
 
       @person_array << person
@@ -74,24 +71,22 @@ class Database
     print "Please input the username of their Slack, GitHub account or the name of the person you want to search: "
     search_person = gets.chomp
 
-    multiple_persons = @person_array.select {|x| (x.name.include?(search_person))}
-    found_person = @person_array.find { |person| person.name == search_person}
+    multiple_persons = @person_array.find_all {|x| (x.name.include?(search_person)) || (x.slack_acct.include?(search_person)) || (x.github_acct.include?(search_person))}
 
-    puts multiple_persons.length
-    p multiple_persons
-
-    # if found_person
-    #   puts "\nThis is #{found_person.name}'s information.
-    #   \nName: #{found_person.name}
-    #   \nPhone: #{found_person.phone_number}
-    #   \nAddress: #{found_person.address}
-    #   \nPosition: #{found_person.position}
-    #   \nSalary: #{found_person.salary}
-    #   \nSlack Account: #{found_person.slack_acct}
-    #   \nGitHub Account: #{found_person.github_acct}"
-    # else
-    #   puts "\n#{search_person} is not in our system.\n"
-    # end
+    if multiple_persons.empty?
+      puts "\nThe search for \"#{search_person}\", yielded zero results."
+    else
+      puts "\nHere are the results of your search including: #{search_person}."
+      multiple_persons.each do |person|
+        puts "\nName: #{person.name}"
+        puts "Phone Number: #{person.phone_number}"
+        puts "Adress: #{person.address}"
+        puts "Position: #{person.position}"
+        puts "Salary: $#{person.salary}"
+        puts "Slack Account: #{person.slack_acct}"
+        puts "GitHub Account: #{person.github_acct}"
+      end
+    end
   end
 
   def delete_person
@@ -102,7 +97,7 @@ class Database
       @person_array.delete_if { |person| person.name == delete_person}
       print "Deleted person: #{delete_person}"
     else
-      print "#{delete_person} is not in our system."
+      print "\n#{delete_person} is not in our system.\n"
     end
   end
 
@@ -124,18 +119,19 @@ class Menu
 
   def menu_selection
     while @menu == true
-      puts "\nPlease type what you would like to do: "
-      puts %{
-        A: Add a person
-        S: Search for a person
-        D: Delete a person
-        Q: Quit
-      }
-      print ">> "
+      puts "\nPlease type what you would like to do:"
+
+      puts "\n\tA: Add a person"
+      puts "\tS: Search for a person"
+      puts "\tD: Delete a person"
+      puts "\tQ: Quit"
+
+      print "\n>> "
       selected = gets.chomp.downcase
 
       if selected == "a"
         @database.add_person
+        @database.write_file
       elsif selected == "s"
         @database.search_person
       elsif selected == "d"
