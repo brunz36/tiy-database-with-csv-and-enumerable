@@ -113,7 +113,7 @@ class Database
       puts "GitHub Account: #{person.github_acct}"
     end
 
-    instructor = @person_array.select { |person|  person.position == "Instructor"  }
+    instructor = @person_array.select { |person| person.position == "Instructor" }
     instructor_salary = instructor.map { |wages| wages.salary }
     instructor_salary_all = instructor_salary.sum
 
@@ -127,8 +127,8 @@ class Database
     puts "The total sum of the Campus Directors salary at The Iron Yard is: $#{director_salary_all}."
 
     puts "\nThere are a total of #{instructor.length} Instructors at The Iron Yard."
-    puts "\nThere are a total of #{director.length} Campus Directors at The Iron Yard."
-    puts "\nThere are a total of #{student.length} students at The Iron Yard."
+    puts "There are a total of #{director.length} Campus Directors at The Iron Yard."
+    puts "There are a total of #{student.length} students at The Iron Yard."
 
   end
 
