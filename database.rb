@@ -103,13 +103,7 @@ class Database
   def report
     puts "\nHere is a list of the individuals associated with The Iron Yard."
     @person_array.each do |person|
-      puts "\nName: #{person.name}"
-      puts "Phone Number: #{person.phone_number}"
-      puts "Adress: #{person.address}"
-      puts "Position: #{person.position}"
-      puts "Salary: $#{person.salary}"
-      puts "Slack Account: #{person.slack_acct}"
-      puts "GitHub Account: #{person.github_acct}"
+      puts "Name: #{person.name}".ljust(20) + "| Phone Number: #{person.phone_number}".ljust(27) + "| Adress: #{person.address}".ljust(50) + "| Position: #{person.position}".ljust(28) + "| Salary: $#{person.salary}".ljust(17) + "| Slack Account: #{person.slack_acct}".ljust(28) + "| GitHub Account: #{person.github_acct}"
     end
 
     instructor = @person_array.select { |person| person.position == "Instructor" }
