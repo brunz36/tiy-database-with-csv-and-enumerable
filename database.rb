@@ -1,4 +1,3 @@
-# DAY 4
 require 'csv'
 
 class Person
@@ -6,7 +5,7 @@ class Person
 
   def initialize(name, phone_number, address, position, salary, slack_acct, github_acct)
     @name = name
-    @phone_number = phone_number
+    @phone_number = phone_number.to_i
     @address = address
     @position = position
     @salary = salary.to_i
@@ -78,13 +77,13 @@ class Database
     else
       puts "\nHere are the results of your search including: #{search_person}."
       multiple_persons.each do |person|
-        puts "\nName: #{person.name}"
-        puts "Phone Number: #{person.phone_number}"
-        puts "Adress: #{person.address}"
-        puts "Position: #{person.position}"
-        puts "Salary: $#{person.salary}"
-        puts "Slack Account: #{person.slack_acct}"
-        puts "GitHub Account: #{person.github_acct}"
+        puts "\nNames:".ljust(17) + person.name
+        puts "Phone Number:".ljust(16) + "#{person.phone_number}"
+        puts "Adress:".ljust(16) + person.address
+        puts "Position:".ljust(16) + person.position
+        puts "Salary:".ljust(16) + "$ #{person.salary}"
+        puts "Slack Account:".ljust(16) + person.slack_acct
+        puts "GitHub Account:".ljust(16) + person.github_acct
       end
     end
   end
