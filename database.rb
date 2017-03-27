@@ -129,24 +129,43 @@ class Database
   end
 
   def write_file_html
+    instructor = @person_array.select { |person| person.position == "Instructor" }
+    instructor_salary = instructor.map { |wages| wages.salary }
+    instructor_salary_all = instructor_salary.sum
+
+    director = @person_array.select { |person| person.position == "Campus Director"}
+    director_salary = director.map { |wages| wages.salary }
+    director_salary_all = director_salary.sum
+
+    student = @person_array.select { |person| person.position == "Student"}
+
     fileHtml = File.new("public/report.html", "w+")
 
+    fileHtml.puts %{<!DOCTYPE html>}
     fileHtml.puts %{<html>}
-    fileHtml.puts %{<head lang="en">}
-    fileHtml.puts %{<meta charset="UTF-8">}
-    fileHtml.puts %{<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">}
-    fileHtml.puts %{<title>Tiy Database With Csv And Enumerable</title>}
-    fileHtml.puts %{<link rel="stylesheet" href="/screen.css">}
-    fileHtml.puts %{</head>}
-    fileHtml.puts %{<body>}
-    fileHtml.puts %{<ul>}
+    fileHtml.puts %{\t<head lang="en">}
+    fileHtml.puts %{\t\t<meta charset="UTF-8">}
+    fileHtml.puts %{\t\t<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">}
+    fileHtml.puts %{\t\t<title>The Iron Yard Database</title>}
+    fileHtml.puts %{\t\t<link rel="stylesheet" href="/screen.css">}
+    fileHtml.puts %{\t</head>}
+    fileHtml.puts %{\t<body>}
+    fileHtml.puts %{\t\t<header>}
+    fileHtml.puts %{\t\t\t<h1>The Iron Yard Database</h1>}
+    fileHtml.puts %{\t\t</header>}
+    fileHtml.puts %{\t\t<ul>}
     @person_array.each do |person|
-      fileHtml.print %{<li>}
-      fileHtml.print "Name: #{person.name}".ljust(20) + "| Phone Number: #{person.phone_number}".ljust(27) + "| Adress: #{person.address}".ljust(50) + "| Position: #{person.position}".ljust(28) + "| Salary: $#{person.salary}".ljust(17) + "| Slack Account: #{person.slack_acct}".ljust(28) + "| GitHub Account: #{person.github_acct}"
-      fileHtml.print %{</li>}
+      fileHtml.print %{\t\t\t<li>}
+      fileHtml.print %{Name: #{person.name}\t\t}.ljust(20) + "| Phone Number: #{person.phone_number}".ljust(27) + "| Adress: #{person.address}".ljust(50) + "| Position: #{person.position}".ljust(28) + "| Salary: $#{person.salary}".ljust(17) + "| Slack Account: #{person.slack_acct}".ljust(28) + "| GitHub Account: #{person.github_acct}"
+      fileHtml.puts %{\t\t\t</li>}
     end
-    fileHtml.puts %{</ul>}
-    fileHtml.puts %{</body>}
+    fileHtml.puts %{\t\t</ul>}
+    fileHtml.puts %{\t\t<p>The total sum of the Instructors salary at The Iron Yard is: $#{instructor_salary_all}.</p>}
+    fileHtml.puts %{\t\t<p>The total sum of the Campus Directors salary at The Iron Yard is: $#{director_salary_all}.</p>}
+    fileHtml.puts %{\t\t<p>There are a total of #{instructor.count} Instructors at The Iron Yard.</p>}
+    fileHtml.puts %{\t\t<p>There are a total of #{director.length} Campus Directors at The Iron Yard.</p>}
+    fileHtml.puts %{\t\t<p>There are a total of #{student.length} students at The Iron Yard.</p>}
+    fileHtml.puts %{\t</body>}
     fileHtml.puts %{</html>}
 
     fileHtml.close()
@@ -168,7 +187,6 @@ class Menu
       puts "\tD: Delete a person"
       puts "\tR: Report"
       puts "\tQ: Quit"
-
       print "\n>> "
       selected = gets.chomp.downcase
 
@@ -181,11 +199,21 @@ class Menu
         @database.delete_person
         @database.write_file
       elsif selected == "r"
-        @database.report
-        @database.write_file_html
+        puts "\nWould like you like to see the report on screen or in a browser?"
+        puts "\n\tS: On screen"
+        puts "\tB: Browser"
+        print "\n>> "
+        report = gets.chomp.downcase
+        if report == "s"
+          @database.report
+        else
+          puts "\nPlease visit https://tiy.edu/could_not_get_yarn_to_work to see the report on the site."
+          @database.write_file_html
+        end
       elsif selected == "q"
         @menu = false
         puts "Thank you for your input."
+        @database.write_file_html
       else
         puts "Please only select: A | S | D | Q"
       end
