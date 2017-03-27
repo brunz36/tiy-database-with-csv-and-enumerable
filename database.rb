@@ -76,14 +76,9 @@ class Database
       puts "\nThe search for \"#{search_person}\", yielded zero results."
     else
       puts "\nHere are the results of your search including: #{search_person}."
+      puts ""
       multiple_persons.each do |person|
-        puts "\nNames:".ljust(17) + person.name
-        puts "Phone Number:".ljust(16) + "#{person.phone_number}"
-        puts "Adress:".ljust(16) + person.address
-        puts "Position:".ljust(16) + person.position
-        puts "Salary:".ljust(16) + "$ #{person.salary}"
-        puts "Slack Account:".ljust(16) + person.slack_acct
-        puts "GitHub Account:".ljust(16) + person.github_acct
+        puts "Name: #{person.name}".ljust(20) + "| Phone Number: #{person.phone_number}".ljust(27) + "| Adress: #{person.address}".ljust(50) + "| Position: #{person.position}".ljust(28) + "| Salary: $#{person.salary}".ljust(17) + "| Slack Account: #{person.slack_acct}".ljust(28) + "| GitHub Account: #{person.github_acct}"
       end
     end
   end
@@ -119,10 +114,9 @@ class Database
     puts "\nThe total sum of the Instructors salary at The Iron Yard is: $#{instructor_salary_all}."
     puts "The total sum of the Campus Directors salary at The Iron Yard is: $#{director_salary_all}."
 
-    puts "\nThere are a total of #{instructor.length} Instructors at The Iron Yard."
+    puts "\nThere are a total of #{instructor.count} Instructors at The Iron Yard."
     puts "There are a total of #{director.length} Campus Directors at The Iron Yard."
     puts "There are a total of #{student.length} students at The Iron Yard."
-
   end
 
   def write_file
@@ -132,6 +126,30 @@ class Database
         row << [person.name, person.phone_number, person.address, person.position, person.salary, person.slack_acct, person.github_acct]
       end
     end
+  end
+
+  def write_file_html
+    fileHtml = File.new("/public/report.html", "w+")
+
+    fileHtml.puts %{<html>}
+    fileHtml.puts %{<head lang="en">}
+    fileHtml.puts %{<meta charset="UTF-8">}
+    fileHtml.puts %{<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">}
+    fileHtml.puts %{<title>Tiy Database With Csv And Enumerable</title>}
+    fileHtml.puts %{<link rel="stylesheet" href="/screen.css">}
+    fileHtml.puts %{</head>}
+    fileHtml.puts %{<body>}
+    fileHtml.puts %{<ul>}
+    @person_array.each do |person|
+      fileHtml.print %{<li>}
+      fileHtml.print "Name: #{person.name}".ljust(20) + "| Phone Number: #{person.phone_number}".ljust(27) + "| Adress: #{person.address}".ljust(50) + "| Position: #{person.position}".ljust(28) + "| Salary: $#{person.salary}".ljust(17) + "| Slack Account: #{person.slack_acct}".ljust(28) + "| GitHub Account: #{person.github_acct}"
+      fileHtml.print %{</li>}
+    end
+    fileHtml.puts %{</ul>}
+    fileHtml.puts %{</body>}
+    fileHtml.puts %{</html>}
+
+    fileHtml.close()
   end
 end
 
@@ -164,6 +182,7 @@ class Menu
         @database.write_file
       elsif selected == "r"
         @database.report
+        @database.write_file_html
       elsif selected == "q"
         @menu = false
         puts "Thank you for your input."
