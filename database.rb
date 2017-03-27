@@ -1,4 +1,5 @@
 require 'csv'
+require 'erb'
 
 class Person
   attr_reader "name", "phone_number", "address", "position", "salary", "slack_acct", "github_acct"
@@ -19,7 +20,8 @@ class Database
 
   def initialize
     @person_array = []
-    CSV.foreach("employees.csv", headers: true) do |row|
+    tiy_database_file = "employees.csv"
+    CSV.foreach(tiy_database_file, headers: true) do |row|
       name = row["Name"]
       phone_number = row["Phone Number"]
       address = row["Address"]
@@ -120,7 +122,7 @@ class Database
   end
 
   def write_file
-    CSV.open("employees.csv", "w") do |row|
+    CSV.open(tiy_database_file, "w") do |row|
       row << ["Name", "Phone Number", "Address", "Position", "Salary", "Slack Account", "GitHub Account"]
       @person_array.each do |person|
         row << [person.name, person.phone_number, person.address, person.position, person.salary, person.slack_acct, person.github_acct]
@@ -147,7 +149,7 @@ class Database
     fileHtml.puts %{\t\t<meta charset="UTF-8">}
     fileHtml.puts %{\t\t<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">}
     fileHtml.puts %{\t\t<title>The Iron Yard Database</title>}
-    fileHtml.puts %{\t\t<link rel="stylesheet" href="/screen.css">}
+    fileHtml.puts %{\t\t<link rel="stylesheet" href="public/screen.css">}
     fileHtml.puts %{\t</head>}
     fileHtml.puts %{\t<body>}
     fileHtml.puts %{\t\t<header>}
