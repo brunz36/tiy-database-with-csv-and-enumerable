@@ -129,7 +129,7 @@ class Database
   end
 
   def write_file_html
-    fileHtml = File.new("/public/report.html", "w+")
+    fileHtml = File.new("public/report.html", "w+")
 
     fileHtml.puts %{<html>}
     fileHtml.puts %{<head lang="en">}
