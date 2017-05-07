@@ -20,8 +20,8 @@ class Database
 
   def initialize
     @person_array = []
-    tiy_database_file = "employees.csv"
-    CSV.foreach(tiy_database_file, headers: true) do |row|
+    @tiy_database_file = "employees.csv"
+    CSV.foreach(@tiy_database_file, headers: true) do |row|
       name = row["Name"]
       phone_number = row["Phone Number"]
       address = row["Address"]
@@ -122,7 +122,7 @@ class Database
   end
 
   def write_file
-    CSV.open(tiy_database_file, "w") do |row|
+    CSV.open(@tiy_database_file, "w") do |row|
       row << ["Name", "Phone Number", "Address", "Position", "Salary", "Slack Account", "GitHub Account"]
       @person_array.each do |person|
         row << [person.name, person.phone_number, person.address, person.position, person.salary, person.slack_acct, person.github_acct]
@@ -141,7 +141,7 @@ class Database
 
     student = @person_array.select { |person| person.position == "Student"}
 
-    fileHtml = File.new("public/report.html", "w+")
+    fileHtml = File.new("report.html", "w+")
 
     fileHtml.puts %{<!DOCTYPE html>}
     fileHtml.puts %{<html>}
